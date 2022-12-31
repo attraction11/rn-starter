@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, StyleSheet, View} from 'react-native';
+// import {StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -9,13 +9,21 @@ import UserScreen from './UserStack';
 
 const Tab = createBottomTabNavigator();
 
-export default function index() {
+export default function Index() {
   return (
     <Tab.Navigator
-      initialRouteName="News"
-      screenOptions={({route}) => ({
-        tabBarIcon: ({focused, color, size}) => {
-          let iconName;
+      initialRouteName="Home"
+      screenOptions={({route}: {route: {name: string}}) => ({
+        tabBarIcon: ({
+          focused,
+          color,
+          size,
+        }: {
+          focused: boolean;
+          color: string;
+          size: number;
+        }) => {
+          let iconName = '';
 
           if (route.name === 'Home') {
             iconName = focused ? 'add-circle' : 'add-circle-outline';
@@ -26,11 +34,10 @@ export default function index() {
           }
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-      })}
-      tabBarOptions={{
-        activeTintColor: 'tomato',
-        inactiveTintColor: 'gray',
-      }}>
+        tabBarActiveTintColor: 'tomato',
+        tabBarInactiveTintColor: 'gray',
+        headerShown: false,
+      })}>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="News" component={NewsScreen} />
       <Tab.Screen name="User" component={UserScreen} />
@@ -38,4 +45,4 @@ export default function index() {
   );
 }
 
-const styles = StyleSheet.create({});
+// const styles = StyleSheet.create({});
