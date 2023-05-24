@@ -1,7 +1,7 @@
 import actionTypes from '../actions/actionTypes';
 
 const initState = {
-  isLogin: false,
+  isLogin: true,
 };
 
 export default (state = initState, action: {type: string; payload: any}) => {
